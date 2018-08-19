@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Controller Relay 84cm</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+   
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-offset-1 col-sm-4">
+          <h1>Controller Relay 84cm</h1>
+        </div>
+        <div class="col-sm-3">
+          <p>Versione Firmware: <strong id="board_version">N/D</strong></p>
+          <p>Input voltage: <strong id="board_voltage">N/D</strong></p>
+          <p>Indirizzo IP: <strong id="board_ip_address">N/D</strong></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+
+
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay1"><strong>Switch 4-20mA lampada</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(1, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(1, 'OFF');">OFF</button>
+          </div>
+        </div>
+        <div class="col-sm-offset-1 col-sm-2">
+          <button type="button" class="btn btn-danger btn-lg"  data-toggle="modal" data-target="#switchOff">
+            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> SPEGNI TUTTO!
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay2"><strong>Accensione lampada Th</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(2, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(2, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay3"><strong>Elettronica Newton</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(3, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(3, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay4"><strong>Elettronica Cassegrain</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(4, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(4, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay5"><strong>Motore DEC</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(5, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(5, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay6"><strong>Motore AR</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(6, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(6, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay7"><strong>Relay 7</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(7, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(7, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <div class="alert alert-warning" role="alert" id="relay8"><strong>Relay 8</strong></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default" onclick="changeRelayState(8, 'ON');">ON</button>
+            <button type="button" class="btn btn-default" onclick="changeRelayState(8, 'OFF');">OFF</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="switchOff" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Conferma spegnimento di TUTTI i relay</h4>
+         </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="switchOff()">Conferma</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+
+      function getStatus(){
+        $.ajax({url: "relayInterface.php?action=get_all_statuses", success: function(res){
+          result = JSON.parse(res);
+          for (var relay_num in result.data) {
+            var relay_status = result.data[relay_num];
+            var tagid = "#relay" + relay_num;
+            var tag = $(tagid);
+            tag.removeClass("alert-warning");
+            if (relay_status == 1) {
+              tag.removeClass("alert-danger").addClass("alert-success");
+            }
+            if (relay_status == 0) {
+              tag.removeClass("alert-success").addClass("alert-danger");
+            }
+          }
+        }});
+      }
+
+      function getInputVoltage(){
+        $.ajax({url: "relayInterface.php?action=get_input_voltage", success: function(res){
+          result = JSON.parse(res);
+          $("#board_voltage").text(result.voltage);
+        }});
+      }
+
+      function getIpAddress(){
+        $.ajax({url: "relayInterface.php?action=get_ip_address", success: function(res){
+          result = JSON.parse(res);
+          $("#board_ip_address").text(result.ip);
+        }});
+      }
+
+      function switchOff(){
+        $.ajax({url: "relayInterface.php?action=turn_all_relay_off", success: function(res){
+          console.log("SPENTO TUTTO!");
+        }});
+      }
+
+      function changeRelayState(relay, state) {
+        console.log(relay);
+        console.log(state);
+        switch (state) {
+          case 'ON':
+            var method = 'turn_relay_on';
+            break;
+          case 'OFF':
+            var method = 'turn_relay_off';
+            break;
+        }
+        var url = "relayInterface.php?action=" + method + "&relay_num=" + relay;
+        $.ajax({url: url, success: function(res){
+         result = JSON.parse(res);
+        }});
+      }
+
+      $( document ).ready(function() {
+        console.log("get firmware version");
+        var url = "relayInterface.php?action=get_firmware";
+        $.ajax({url: url, success: function(res){
+          result = JSON.parse(res);
+          $("#board_version").text(result.version);
+        }});
+
+        getIpAddress();
+        getInputVoltage();
+
+        setInterval(getStatus, 250);
+        setInterval(getInputVoltage, 5000);
+
+      });
+    </script>
+
+  </body>
+
+</html>
